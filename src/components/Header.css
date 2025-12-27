@@ -1,0 +1,203 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-4) 0;
+    gap: var(--spacing-6);
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    transition: transform var(--transition-fast);
+    z-index: 1001;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-icon {
+    font-size: var(--font-size-3xl);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.logo-primary {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-extrabold);
+    color: var(--color-primary);
+}
+
+.logo-secondary {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    letter-spacing: 0.05em;
+}
+
+/* Navigation */
+.nav {
+    display: none;
+    gap: var(--spacing-6);
+    align-items: center;
+}
+
+.nav-link {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-700);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    background-color: rgba(30, 58, 138, 0.05);
+}
+
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+}
+
+/* Desktop CTA */
+.btn-desktop {
+    display: none;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--spacing-2);
+    z-index: 1001;
+    background: transparent;
+}
+
+.menu-bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+}
+
+.menu-toggle.active .menu-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .menu-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .menu-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Navigation */
+@media (max-width: 767px) {
+    .nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 320px;
+        height: 100vh;
+        background-color: var(--color-white);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--spacing-20) var(--spacing-6) var(--spacing-6);
+        box-shadow: var(--shadow-2xl);
+        transition: right var(--transition-slow);
+    }
+
+    .nav-open {
+        right: 0;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: var(--spacing-4);
+        font-size: var(--font-size-lg);
+    }
+
+    .nav-link.active::after {
+        width: 4px;
+        height: 60%;
+        left: -var(--spacing-6);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .btn-mobile {
+        width: 100%;
+        margin-top: var(--spacing-4);
+        display: flex !important;
+    }
+
+    .btn-desktop {
+        display: none !important;
+    }
+}
+
+/* Tablet & Desktop */
+@media (min-width: 768px) {
+    .nav {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .btn-mobile {
+        display: none;
+    }
+
+    .btn-desktop {
+        display: inline-flex;
+    }
+}
+
+/* Desktop Large */
+@media (min-width: 1024px) {
+    .nav {
+        gap: var(--spacing-8);
+    }
+
+    .nav-link {
+        font-size: var(--font-size-lg);
+    }
+}
